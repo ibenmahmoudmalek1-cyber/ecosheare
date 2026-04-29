@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoShare | Partagez et économisez</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #0a2e1a;
+    --green-mid: #1a5c32;
+    --green-bright: #2ecc71;
+    --green-lime: #a8e063;
+    --earth: #c8a96e;
+    --cream: #f7f3eb;
+    --dark: #0d1f13;
+    --white: #ffffff;
+    --accent-orange: #e8834a;
+    --accent-blue: #4a9aba;
+    --gray-soft: #e8ede9;
+    --text-dark: #1a2e1f;
+    --text-mid: #4a6355;
+    --shadow-green: rgba(46, 204, 113, 0.12);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Tajawal', sans-serif; background: var(--cream); color: var(--text-dark); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2rem; height: 68px;
+    background: rgba(10, 46, 26, 0.97); backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(46, 204, 113, 0.18);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--green-bright), var(--green-lime)); border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; }
+  .logo-text { color: var(--white); font-weight: 900; font-size: 1.2rem; }
+  .logo-text span { color: var(--green-bright); }
+  .nav-links { display: flex; gap: 0.2rem; list-style: none; }
+  .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; font-size: 0.88rem; font-weight: 500; padding: 7px 13px; border-radius: 8px; transition: all 0.2s; }
+  .nav-links a:hover { color: var(--green-bright); background: rgba(46,204,113,0.1); }
+  .nav-cta { background: var(--green-bright) !important; color: var(--green-deep) !important; font-weight: 800 !important; }
+  .nav-cta:hover { background: var(--green-lime) !important; }
+
+  /* HERO */
+  .hero { min-height: 100vh; background: var(--green-deep); position: relative; overflow: hidden; display: flex; align-items: center; padding: 100px 2rem 60px; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 75% 25%, rgba(46,204,113,0.1) 0%, transparent 50%), radial-gradient(ellipse at 10% 80%, rgba(168,224,99,0.06) 0%, transparent 50%); }
+  .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(46,204,113,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(46,204,113,0.04) 1px, transparent 1px); background-size: 60px 60px; }
+  .hero-content { position: relative; max-width: 1180px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: center; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(46,204,113,0.1); border: 1px solid rgba(46,204,113,0.3); padding: 5px 14px; border-radius: 50px; color: var(--green-bright); font-size: 0.8rem; font-weight: 600; margin-bottom: 1.5rem; animation: fadeDown 0.7s ease both; }
+  @keyframes fadeDown { from { opacity: 0; transform: translateY(-15px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-title { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 1.2rem; animation: fadeUp 0.7s ease 0.1s both; }
+  .hero-title .hl { color: var(--green-bright); position: relative; display: inline-block; }
+  .hero-title .hl::after { content: ''; position: absolute; bottom: 2px; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--green-bright), var(--green-lime)); border-radius: 2px; }
+  .hero-sub { font-size: 1.1rem; color: rgba(255,255,255,0.6); line-height: 1.7; margin-bottom: 2.5rem; animation: fadeUp 0.7s ease 0.2s both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.7s ease 0.3s both; }
+  .btn-primary { background: linear-gradient(135deg, var(--green-bright), var(--green-lime)); color: var(--green-deep); font-family: 'Tajawal', sans-serif; font-weight: 800; font-size: 1rem; padding: 13px 26px; border: none; border-radius: 11px; cursor: pointer; transition: all 0.25s; display: flex; align-items: center; gap: 8px; text-decoration: none; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(46,204,113,0.4); }
+  .btn-outline { background: transparent; color: var(--white); font-family: 'Tajawal', sans-serif; font-weight: 600; font-size: 1rem; padding: 13px 26px; border: 1.5px solid rgba(255,255,255,0.25); border-radius: 11px; cursor: pointer; transition: all 0.25s; text-decoration: none; }
+  .btn-outline:hover { border-color: var(--green-bright); color: var(--green-bright); background: rgba(46,204,113,0.06); }
+  .hero-stats { display: flex; gap: 2.5rem; margin-top: 3rem; animation: fadeUp 0.7s ease 0.4s both; }
+  .stat-num { font-family: 'Space Mono', monospace; font-size: 1.9rem; font-weight: 700; color: var(--green-bright); line-height: 1; }
+  .stat-label { font-size: 0.76rem; color: rgba(255,255,255,0.45); margin-top: 4px; }
+
+  /* Hero visual cards */
+  .hero-visual { animation: fadeUp 0.7s ease 0.3s both; }
+  .hero-card-stack { position: relative; height: 380px; }
+  .fc { position: absolute; background: rgba(255,255,255,0.05); border: 1px solid rgba(46,204,113,0.18); backdrop-filter: blur(10px); border-radius: 16px; padding: 1.2rem 1.4rem; color: var(--white); }
+  .fc:nth-child(1) { top: 0; right: 0; width: 78%; animation: fl1 6s ease-in-out infinite; }
+  .fc:nth-child(2) { top: 33%; right: 18%; width: 72%; animation: fl2 7s ease-in-out infinite; }
+  .fc:nth-child(3) { bottom: 0; right: 4%; width: 68%; animation: fl3 5s ease-in-out infinite; }
+  @keyframes fl1 { 0%,100%{transform:translateY(0) rotate(-1deg)} 50%{transform:translateY(-10px) rotate(0)} }
+  @keyframes fl2 { 0%,100%{transform:translateY(0) rotate(1deg)} 50%{transform:translateY(-14px) rotate(.5deg)} }
+  @keyframes fl3 { 0%,100%{transform:translateY(0) rotate(-.5deg)} 50%{transform:translateY(-8px) rotate(1deg)} }
+  .fc-tag { display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; border-radius: 20px; font-size: 0.71rem; font-weight: 700; margin-bottom: 0.65rem; }
+  .fc-tag.food { background: rgba(232,131,74,0.2); color: var(--accent-orange); }
+  .fc-tag.exchange { background: rgba(46,204,113,0.2); color: var(--green-bright); }
+  .fc-tag.recycle { background: rgba(74,154,186,0.2); color: var(--accent-blue); }
+  .fc-title { font-weight: 700; font-size: 0.92rem; margin-bottom: 3px; }
+  .fc-sub { font-size: 0.76rem; color: rgba(255,255,255,0.5); }
+  .fc-footer { display: flex; align-items: center; justify-content: space-between; margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px solid rgba(255,255,255,0.07); }
+  .fc-loc { font-size: 0.73rem; color: rgba(255,255,255,0.4); }
+  .fc-btn { border: none; padding: 5px 13px; border-radius: 7px; font-family: 'Tajawal', sans-serif; font-weight: 700; font-size: 0.76rem; cursor: pointer; }
+  .fc-btn.green { background: var(--green-bright); color: var(--green-deep); }
+  .fc-btn.lime { background: var(--green-lime); color: var(--green-deep); }
+  .fc-btn.blue { background: var(--accent-blue); color: var(--white); }
+
+  /* COMMON SECTION */
+  section { padding: 88px 2rem; }
+  .container { max-width: 1180px; margin: 0 auto; }
+  .section-header { text-align: center; margin-bottom: 3.5rem; }
+  .section-chip { display: inline-flex; align-items: center; gap: 6px; background: var(--shadow-green); border: 1px solid rgba(46,204,113,0.22); color: var(--green-mid); font-size: 0.8rem; font-weight: 700; padding: 5px 13px; border-radius: 50px; margin-bottom: 0.9rem; }
+  .section-title { font-size: clamp(1.8rem, 4vw, 2.7rem); font-weight: 900; color: var(--text-dark); line-height: 1.15; margin-bottom: 0.9rem; }
+  .section-desc { font-size: 1rem; color: var(--text-mid); line-height: 1.7; max-width: 580px; margin: 0 auto; }
+
+  /* HOW IT WORKS */
+  .how-section { background: var(--green-deep); position: relative; overflow: hidden; }
+  .how-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 0% 0%, rgba(46,204,113,0.07) 0%, transparent 50%); }
+  .how-section .section-chip { color: var(--green-bright); background: rgba(46,204,113,0.1); border-color: rgba(46,204,113,0.22); }
+  .how-section .section-title { color: var(--white); }
+  .how-section .section-desc { color: rgba(255,255,255,0.55); }
+  .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; position: relative; }
+  .step-card { background: rgba(255,255,255,0.04); border: 1px solid rgba(46,204,113,0.14); border-radius: 20px; padding: 1.8rem; position: relative; transition: all 0.3s; }
+  .step-card:hover { border-color: rgba(46,204,113,0.35); background: rgba(46,204,113,0.05); transform: translateY(-5px); }
+  .step-num { font-family: 'Space Mono', monospace; font-size: 3.2rem; font-weight: 700; color: rgba(46,204,113,0.1); position: absolute; top: 0.8rem; left: 1.2rem; line-height: 1; }
+  .step-icon { width: 50px; height: 50px; border-radius: 13px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 1.1rem; }
+  .step-title { font-size: 1.05rem; font-weight: 800; color: var(--white); margin-bottom: 0.55rem; }
+  .step-desc { font-size: 0.87rem; color: rgba(255,255,255,0.52); line-height: 1.6; }
+
+  /* FEATURES */
+  .features-section { background: var(--cream); }
+  .tabs-nav { display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 2.8rem; flex-wrap: wrap; }
+  .tab-btn { display: flex; align-items: center; gap: 7px; padding: 9px 18px; border-radius: 50px; border: 1.5px solid var(--gray-soft); background: var(--white); font-family: 'Tajawal', sans-serif; font-size: 0.87rem; font-weight: 600; color: var(--text-mid); cursor: pointer; transition: all 0.22s; }
+  .tab-btn:hover { border-color: var(--green-bright); color: var(--green-deep); }
+  .tab-btn.active { background: var(--green-deep); color: var(--white); border-color: var(--green-deep); }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  .feature-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+  .feature-tag { display: inline-flex; align-items: center; gap: 6px; font-size: 0.78rem; font-weight: 700; padding: 4px 11px; border-radius: 20px; margin-bottom: 0.9rem; text-transform: uppercase; letter-spacing: 0.4px; }
+  .feature-h2 { font-size: 1.9rem; font-weight: 900; color: var(--text-dark); line-height: 1.2; margin-bottom: 0.9rem; }
+  .feature-p { font-size: 0.97rem; color: var(--text-mid); line-height: 1.75; margin-bottom: 1.4rem; }
+  .feature-list { list-style: none; display: flex; flex-direction: column; gap: 0.55rem; }
+  .feature-list li { display: flex; align-items: flex-start; gap: 9px; font-size: 0.9rem; color: var(--text-dark); font-weight: 500; }
+  .feature-list li::before { content: '✓'; width: 20px; height: 20px; background: var(--green-bright); color: var(--green-deep); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.68rem; font-weight: 900; flex-shrink: 0; margin-top: 1px; }
+  .feature-mockup { background: var(--green-deep); border-radius: 22px; padding: 1.4rem; position: relative; overflow: hidden; min-height: 320px; }
+  .feature-mockup::before { content: ''; position: absolute; top: -50%; right: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse, rgba(46,204,113,0.06) 0%, transparent 60%); }
+  .mockup-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.1rem; }
+  .mockup-title { font-size: 0.88rem; font-weight: 700; color: rgba(255,255,255,0.9); }
+  .mockup-sub { font-size: 0.73rem; color: rgba(255,255,255,0.4); }
+  .live-badge { background: rgba(46,204,113,0.2); color: var(--green-bright); font-size: 0.7rem; font-weight: 700; padding: 3px 9px; border-radius: 20px; }
+  .lc { display: flex; align-items: center; gap: 0.9rem; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 13px; padding: 0.9rem 1.1rem; margin-bottom: 0.7rem; cursor: pointer; transition: all 0.2s; }
+  .lc:hover { background: rgba(46,204,113,0.07); border-color: rgba(46,204,113,0.2); }
+  .lc-emoji { width: 42px; height: 42px; background: rgba(255,255,255,0.05); border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+  .lc-info { flex: 1; }
+  .lc-name { font-size: 0.85rem; font-weight: 700; color: rgba(255,255,255,0.9); margin-bottom: 2px; }
+  .lc-meta { font-size: 0.73rem; color: rgba(255,255,255,0.42); }
+  .lc-price { font-family: 'Space Mono', monospace; font-size: 0.82rem; font-weight: 700; }
+  .price-free { color: var(--green-lime); }
+  .price-blue { color: var(--accent-blue); }
+  .price-orange { color: var(--accent-orange); }
+
+  /* SMART */
+  .smart-section { background: linear-gradient(180deg, #f0f7f2 0%, var(--cream) 100%); }
+  .smart-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+  .smart-card { background: var(--white); border: 1px solid var(--gray-soft); border-radius: 18px; padding: 1.7rem; transition: all 0.3s; position: relative; overflow: hidden; }
+  .smart-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, var(--green-bright), var(--green-lime)); transform: scaleX(0); transition: transform 0.3s; }
+  .smart-card:hover::before { transform: scaleX(1); }
+  .smart-card:hover { border-color: rgba(46,204,113,0.28); box-shadow: 0 12px 36px rgba(46,204,113,0.09); transform: translateY(-4px); }
+  .smart-icon { width: 48px; height: 48px; border-radius: 13px; background: var(--shadow-green); display: flex; align-items: center; justify-content: center; font-size: 1.35rem; margin-bottom: 1.1rem; }
+  .smart-title { font-size: 1rem; font-weight: 800; color: var(--text-dark); margin-bottom: 0.55rem; }
+  .smart-desc { font-size: 0.86rem; color: var(--text-mid); line-height: 1.62; }
+
+  /* SDG */
+  .sdg-section { background: var(--white); }
+  .sdg-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; }
+  .sdg-card { border-radius: 18px; padding: 1.8rem 1.4rem; text-align: center; transition: all 0.3s; }
+  .sdg-card:hover { transform: translateY(-6px); }
+  .sdg-card.s2 { background: #fff3e8; border: 1px solid #f4c08a; }
+  .sdg-card.s11 { background: #e8f4ff; border: 1px solid #8ac0f0; }
+  .sdg-card.s12 { background: #fff8e8; border: 1px solid #f0d48a; }
+  .sdg-card.s13 { background: #e8fff3; border: 1px solid #8af0c0; }
+  .sdg-icon { font-size: 2.4rem; margin-bottom: 0.75rem; }
+  .sdg-num { font-family: 'Space Mono', monospace; font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 0.35rem; }
+  .s2 .sdg-num { color: #d06010; } .s11 .sdg-num { color: #1060c0; } .s12 .sdg-num { color: #b09010; } .s13 .sdg-num { color: #10a050; }
+  .sdg-title { font-size: 0.92rem; font-weight: 800; color: var(--text-dark); margin-bottom: 0.45rem; }
+  .sdg-desc { font-size: 0.78rem; color: var(--text-mid); line-height: 1.5; }
+
+  /* MAP */
+  .map-section { background: var(--green-deep); padding: 88px 2rem; position: relative; overflow: hidden; }
+  .map-section::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 25% 50%, rgba(46,204,113,0.08) 0%, transparent 55%); }
+  .map-section .section-chip { color: var(--green-bright); background: rgba(46,204,113,0.1); border-color: rgba(46,204,113,0.22); }
+  .map-section .section-title { color: var(--white); }
+  .map-section .section-desc { color: rgba(255,255,255,0.55); }
+  .map-layout { display: grid; grid-template-columns: 1fr 1.4fr; gap: 4rem; align-items: center; }
+  .map-feats { display: flex; flex-direction: column; gap: 1.1rem; }
+  .map-feat { display: flex; gap: 0.9rem; align-items: flex-start; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07); border-radius: 15px; padding: 1.1rem; transition: all 0.22s; }
+  .map-feat:hover { border-color: rgba(46,204,113,0.22); background: rgba(46,204,113,0.04); }
+  .map-feat-icon { width: 40px; height: 40px; border-radius: 11px; background: rgba(46,204,113,0.14); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; flex-shrink: 0; }
+  .map-feat-title { font-size: 0.87rem; font-weight: 700; color: var(--white); margin-bottom: 2px; }
+  .map-feat-desc { font-size: 0.77rem; color: rgba(255,255,255,0.48); line-height: 1.5; }
+  .fake-map { background: #0d3520; border: 1px solid rgba(46,204,113,0.18); border-radius: 22px; height: 340px; position: relative; overflow: hidden; }
+  .map-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(46,204,113,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(46,204,113,0.05) 1px, transparent 1px); background-size: 40px 40px; }
+  .pin { position: absolute; display: flex; flex-direction: column; align-items: center; cursor: pointer; transform: translate(-50%, -100%); transition: all 0.2s; }
+  .pin:hover { transform: translate(-50%, -100%) scale(1.12); }
+  .pin-label { padding: 3px 8px; border-radius: 7px; font-size: 0.68rem; font-weight: 700; margin-bottom: 4px; box-shadow: 0 3px 12px rgba(0,0,0,0.3); }
+  .pin-label.g { background: var(--green-bright); color: var(--green-deep); }
+  .pin-label.o { background: var(--accent-orange); color: var(--white); }
+  .pin-label.b { background: var(--accent-blue); color: var(--white); }
+  .pin-dot { width: 11px; height: 11px; border-radius: 50%; }
+  .pin-dot.g { background: var(--green-bright); box-shadow: 0 0 0 4px rgba(46,204,113,0.22); animation: pulse 2s ease-in-out infinite; }
+  .pin-dot.o { background: var(--accent-orange); box-shadow: 0 0 0 4px rgba(232,131,74,0.22); animation: pulse 2.5s ease-in-out infinite; }
+  .pin-dot.b { background: var(--accent-blue); box-shadow: 0 0 0 4px rgba(74,154,186,0.22); animation: pulse 3s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.6} }
+  .map-legend { position: absolute; bottom: 1rem; right: 1rem; background: rgba(0,0,0,0.5); backdrop-filter: blur(8px); border-radius: 11px; padding: 0.7rem 0.9rem; display: flex; flex-direction: column; gap: 4px; }
+  .legend-row { display: flex; align-items: center; gap: 7px; font-size: 0.7rem; color: rgba(255,255,255,0.7); }
+  .legend-dot { width: 9px; height: 9px; border-radius: 50%; }
+
+  /* COMMUNITY */
+  .community-section { background: var(--cream); }
+  .challenges-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+  .ch-card { border-radius: 20px; padding: 1.7rem; position: relative; overflow: hidden; transition: all 0.3s; cursor: pointer; }
+  .ch-card:hover { transform: translateY(-5px); }
+  .ch-card.c1 { background: linear-gradient(135deg, #0a2e1a 0%, #1a5c32 100%); }
+  .ch-card.c2 { background: linear-gradient(135deg, #2c1a0a 0%, #6b3c18 100%); }
+  .ch-card.c3 { background: linear-gradient(135deg, #0a1828 0%, #1a4060 100%); }
+  .ch-icon { font-size: 2.4rem; margin-bottom: 0.9rem; }
+  .ch-title { font-size: 0.97rem; font-weight: 800; color: var(--white); margin-bottom: 0.4rem; }
+  .ch-desc { font-size: 0.8rem; color: rgba(255,255,255,0.58); line-height: 1.5; margin-bottom: 1.1rem; }
+  .ch-meta { display: flex; align-items: center; justify-content: space-between; }
+  .ch-participants { font-size: 0.73rem; color: rgba(255,255,255,0.45); }
+  .ch-join { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.18); color: var(--white); font-family: 'Tajawal', sans-serif; font-size: 0.76rem; font-weight: 700; padding: 5px 13px; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+  .ch-join:hover { background: rgba(255,255,255,0.2); }
+  .ch-join.joined { background: rgba(46,204,113,0.25); border-color: rgba(46,204,113,0.4); }
+
+  /* POST */
+  .post-section { background: var(--white); }
+  .post-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 4rem; align-items: start; }
+  .post-form-card { background: var(--cream); border-radius: 22px; padding: 2.2rem; border: 1px solid var(--gray-soft); }
+  .form-title { font-size: 1.2rem; font-weight: 800; color: var(--text-dark); margin-bottom: 1.6rem; }
+  .type-selector { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.45rem; margin-bottom: 1.2rem; }
+  .type-opt { border: 1.5px solid var(--gray-soft); border-radius: 10px; padding: 8px 5px; text-align: center; cursor: pointer; transition: all 0.2s; background: var(--white); }
+  .type-opt:hover, .type-opt.selected { border-color: var(--green-bright); background: rgba(46,204,113,0.07); }
+  .type-opt-icon { font-size: 1.2rem; display: block; margin-bottom: 3px; }
+  .type-opt-label { font-size: 0.7rem; font-weight: 700; color: var(--text-mid); }
+  .form-group { margin-bottom: 1.1rem; }
+  .form-label { display: block; font-size: 0.83rem; font-weight: 700; color: var(--text-dark); margin-bottom: 5px; }
+  .form-input, .form-select, .form-textarea { width: 100%; padding: 10px 13px; border: 1.5px solid var(--gray-soft); border-radius: 11px; font-family: 'Tajawal', sans-serif; font-size: 0.88rem; color: var(--text-dark); background: var(--white); outline: none; transition: border-color 0.2s; }
+  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--green-bright); box-shadow: 0 0 0 3px rgba(46,204,113,0.1); }
+  .form-textarea { resize: vertical; min-height: 85px; }
+  .form-submit { width: 100%; background: linear-gradient(135deg, var(--green-bright), var(--green-lime)); color: var(--green-deep); font-family: 'Tajawal', sans-serif; font-weight: 800; font-size: 0.97rem; padding: 12px; border: none; border-radius: 11px; cursor: pointer; transition: all 0.25s; margin-top: 0.4rem; }
+  .form-submit:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(46,204,113,0.35); }
+  .recent-title { font-size: 1.05rem; font-weight: 800; color: var(--text-dark); margin-bottom: 1.3rem; }
+  .ri { display: flex; gap: 0.9rem; padding: 0.9rem 0; border-bottom: 1px solid var(--gray-soft); align-items: flex-start; }
+  .ri:last-child { border-bottom: none; }
+  .ri-emoji { width: 42px; height: 42px; border-radius: 11px; background: var(--shadow-green); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0; }
+  .ri-info { flex: 1; }
+  .ri-name { font-size: 0.87rem; font-weight: 700; color: var(--text-dark); margin-bottom: 2px; }
+  .ri-meta { font-size: 0.73rem; color: var(--text-mid); }
+  .ri-badge { font-size: 0.7rem; font-weight: 700; padding: 3px 9px; border-radius: 20px; white-space: nowrap; align-self: center; }
+  .bf { background: rgba(232,131,74,0.13); color: var(--accent-orange); }
+  .be { background: rgba(46,204,113,0.13); color: var(--green-mid); }
+  .br { background: rgba(74,154,186,0.13); color: var(--accent-blue); }
+
+  /* FOOTER */
+  footer { background: var(--dark); padding: 60px 2rem 28px; }
+  .footer-grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 2.5rem; }
+  .footer-desc { font-size: 0.85rem; color: rgba(255,255,255,0.4); line-height: 1.7; margin-top: 0.9rem; max-width: 240px; }
+  .footer-col-title { font-size: 0.82rem; font-weight: 800; color: rgba(255,255,255,0.85); letter-spacing: 0.4px; margin-bottom: 0.9rem; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
+  .footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--green-bright); }
+  .footer-bottom { max-width: 1180px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding-top: 1.8rem; border-top: 1px solid rgba(255,255,255,0.07); }
+  .footer-copy { font-size: 0.78rem; color: rgba(255,255,255,0.28); }
+  .footer-odds { display: flex; gap: 0.35rem; }
+  .odd-badge { font-size: 0.7rem; font-weight: 700; padding: 3px 8px; border-radius: 6px; background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.4); }
+
+  /* TOAST */
+  .toast { position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(80px); background: var(--green-deep); border: 1px solid rgba(46,204,113,0.3); color: var(--white); padding: 13px 22px; border-radius: 13px; font-size: 0.88rem; font-weight: 600; z-index: 9999; transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); display: flex; align-items: center; gap: 9px; box-shadow: 0 10px 35px rgba(0,0,0,0.3); }
+  .toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(28px); transition: all 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; } .d4 { transition-delay: 0.4s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-content, .feature-layout, .map-layout, .post-grid { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .steps-grid, .challenges-grid { grid-template-columns: 1fr; }
+    .smart-grid { grid-template-columns: 1fr 1fr; }
+    .sdg-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+  }
+  @media (max-width: 600px) {
+    .smart-grid { grid-template-columns: 1fr; }
+    .type-selector { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="logo-icon">🌱</div>
+    <div class="logo-text">Eco<span>Share</span></div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#features">Sections</a></li>
+    <li><a href="#smart">Fonctionnalités intelligentes</a></li>
+    <li><a href="#sdg">Objectifs de développement</a></li>
+    <li><a href="#community">Communauté</a></li>
+    <li><a href="#post" class="nav-cta">Commencer</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-content">
+    <div>
+      <div class="hero-badge">🌍 Plateforme environnementale collaborative · Tunisie 2025</div>
+
+      <h1 class="hero-title">
+        Partagez, économisez,<br><span class="hl">et protégez la planète</span>
+      </h1>
+
+      <p class="hero-sub">
+        Une plateforme qui connecte les personnes, les restaurants et les associations pour réduire le gaspillage, échanger des ressources et soutenir la communauté — tout en un seul endroit.
+      </p>
+
+      <div class="hero-actions">
+        <a class="btn-primary" href="#post">🚀 Commencer gratuitement</a>
+        <a class="btn-outline" href="#features">Comment ça marche ?</a>
+      </div>
+
+      <div class="hero-stats">
+        <div><div class="stat-num">2.4K</div><div class="stat-label">Utilisateurs actifs</div></div>
+        <div><div class="stat-num">18T</div><div class="stat-label">Kg de nourriture sauvés</div></div>
+        <div><div class="stat-num">340</div><div class="stat-label">Échanges réussis</div></div>
+        <div><div class="stat-num">12</div><div class="stat-label">Villes tunisiennes</div></div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-card-stack">
+
+        <div class="fc">
+          <div class="fc-tag food">🍱 Food Rescue</div>
+          <div class="fc-title">Pizza Margherita + salade</div>
+          <div class="fc-sub">Restaurant La Rotonde · Tunis</div>
+          <div class="fc-footer">
+            <div class="fc-loc">📍 À 1.2 km de vous</div>
+            <button class="fc-btn green">Réserver gratuitement</button>
+          </div>
+        </div>
+
+        <div class="fc">
+          <div class="fc-tag exchange">🔄 Échange</div>
+          <div class="fc-title">Livres scolaires — lycée</div>
+          <div class="fc-sub">Ahmed B. · Ariana</div>
+          <div class="fc-footer">
+            <div class="fc-loc">📍 À 3.7 km de vous</div>
+            <button class="fc-btn lime">Contacter</button>
+          </div>
+        </div>
+
+        <div class="fc">
+          <div class="fc-tag recycle">♻️ Recyclage</div>
+          <div class="fc-title">Ordinateur ancien + écran</div>
+          <div class="fc-sub">Fatma K. · Manouba</div>
+          <div class="fc-footer">
+            <div class="fc-loc">📍 À 5.1 km de vous</div>
+            <button class="fc-btn blue">Envoyer une demande</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-chip">⚡ Fonctionnement</div>
+      <h2 class="section-title">Simple, rapide, efficace</h2>
+      <p class="section-desc">Trois étapes seulement pour participer à la construction d’une communauté plus durable</p>
+    </div>
+
+    <div class="steps-grid">
+
+      <div class="step-card reveal d1">
+        <div class="step-num">01</div>
+        <div class="step-icon" style="background:rgba(232,131,74,0.14)">📌</div>
+        <div class="step-title">Publiez ce que vous avez ou ce dont vous avez besoin</div>
+        <div class="step-desc">Nourriture excédentaire ? objets anciens ? vêtements ? ou même un besoin — publiez-le en quelques secondes avec une interface simple et intuitive.</div>
+      </div>
+
+      <div class="step-card reveal d2">
+        <div class="step-num">02</div>
+        <div class="step-icon" style="background:rgba(46,204,113,0.13)">🤖</div>
+        <div class="step-title">La plateforme effectue un matching automatique</div>
+        <div class="step-desc">Un algorithme intelligent vous connecte à la personne, au restaurant ou à l’association la plus proche pouvant profiter de votre offre ou répondre à votre besoin.</div>
+      </div>
+
+      <div class="step-card reveal d3">
+        <div class="step-num">03</div>
+        <div class="step-icon" style="background:rgba(74,154,186,0.13)">🤝</div>
+        <div class="step-title">Communiquez et protégez la planète</div>
+        <div class="step-desc">Contactez directement, organisez la récupération et gagnez des points verts qui vous donnent de véritables avantages dans la communauté.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES TABS -->
+<section class="features-section" id="features">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-chip">🌿 Sections de la plateforme</div>
+      <h2 class="section-title">Tout ce dont vous avez besoin en un seul endroit</h2>
+      <p class="section-desc">Quatre sections intégrées couvrant tous les aspects du partage et de la durabilité environnementale</p>
+    </div>
+
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab('food',this)">🍱 Food Rescue</button>
+      <button class="tab-btn" onclick="switchTab('exchange',this)">🔄 Échange</button>
+      <button class="tab-btn" onclick="switchTab('recycle',this)">♻️ Recyclage</button>
+      <button class="tab-btn" onclick="switchTab('comm',this)">🤝 Communauté</button>
+    </div>
+
+    <div class="tab-content active" id="tab-food">
+      <div class="feature-layout">
+        <div>
+          <div class="feature-tag" style="background:rgba(232,131,74,0.14);color:var(--accent-orange)">🍱 Food Rescue</div>
+          <h2 class="feature-h2">Sauvez la nourriture avant qu’elle ne soit gaspillée</h2>
+          <p class="feature-p">Les restaurants et commerces publient chaque jour leurs excédents alimentaires et produits proches de la date de péremption — à prix symbolique ou gratuitement. Vous en profitez, ils réduisent leurs pertes, et la planète y gagne.</p>
+          <ul class="feature-list">
+            <li>Notifications instantanées des offres près de vous</li>
+            <li>Réservation à l’avance pour garantir votre part</li>
+            <li>Système de notation pour renforcer la confiance</li>
+            <li>Don de votre part directement à une association en un clic</li>
+          </ul>
+        </div>
+
+        <div class="feature-mockup">
+          <div class="mockup-header">
+            <div>
+              <div class="mockup-title">🍱 Offres du jour</div>
+              <div class="mockup-sub">4 offres proches · Tunis</div>
+            </div>
+            <span class="live-badge">LIVE</span>
+          </div>
+
+          <div class="lc">
+            <div class="lc-emoji">🍕</div>
+            <div class="lc-info">
+              <div class="lc-name">3 parts de pizza + boisson</div>
+              <div class="lc-meta">Pizza Roma · expire dans 2 heures</div>
+            </div>
+            <div class="lc-price price-free">Gratuit</div>
+          </div>
+
+          <div class="lc">
+            <div class="lc-emoji">🥗</div>
+            <div class="lc-info">
+              <div class="lc-name">Grande salade + pain</div>
+              <div class="lc-meta">Café Vert · expire dans 1 heure</div>
+            </div>
+            <div class="lc-price" style="color:var(--green-bright)">1.5 DT</div>
+          </div>
+
+          <div class="lc">
+            <div class="lc-emoji">🍰</div>
+            <div class="lc-info">
+              <div class="lc-name">Assortiment de pâtisseries (10 pièces)</div>
+              <div class="lc-meta">Boulangerie El Amal · expire maintenant !</div>
+            </div>
+            <div class="lc-price price-free">Gratuit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-exchange">
+      <div class="feature-layout">
+        <div>
+          <div class="feature-tag" style="background:rgba(46,204,113,0.13);color:var(--green-mid)">🔄 Échange</div>
+          <h2 class="feature-h2">Ce qui ne vous sert plus peut servir aux autres</h2>
+          <p class="feature-p">Chaises en trop ? Vêtements d’enfants ? Livres scolaires ? Tout objet inutilisé peut avoir de la valeur pour quelqu’un d’autre. La plateforme fait un matching intelligent entre offres et demandes.</p>
+          <ul class="feature-list">
+            <li>Publication facile des objets et articles utilisés</li>
+            <li>Matching automatique avec les besoins correspondants</li>
+            <li>Système de notation pour instaurer la confiance</li>
+            <li>Échange gratuit ou symbolique — vous décidez</li>
+          </ul>
+        </div>
+
+        <div class="feature-mockup">
+          <div class="mockup-header">
+            <div>
+              <div class="mockup-title">🔄 Annonces d’échange</div>
+              <div class="mockup-sub">12 nouvelles annonces aujourd’hui</div>
+            </div>
+          </div>
+
+          <div class="lc">
+            <div class="lc-emoji">📚</div>
+            <div class="lc-info">
+              <div class="lc-name">Livres lycée — 3ème année sciences</div>
+              <div class="lc-meta">Ahmed · Ariana · cherche livres de maths</div>
+            </div>
+            <div class="lc-price price-free">Échange</div>
+          </div>
+
+          <div class="lc">
+            <div class="lc-emoji">🪑</div>
+            <div class="lc-info">
+              <div class="lc-name">4 chaises en bois</div>
+              <div class="lc-meta">Meryem · La Marsa · à donner</div>
+            </div>
+            <div class="lc-price price-free">Gratuit</div>
+          </div>
+
+          <div class="lc">
+            <div class="lc-emoji">👕</div>
+            <div class="lc-info">
+              <div class="lc-name">Vêtements enfants 2-4 ans</div>
+              <div class="lc-meta">Sarah · Ben Arous · 12 pièces</div>
+            </div>
+            <div class="lc-price price-free">Gratuit</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-recycle">
+      <div class="feature-layout">
+        <div>
+          <div class="feature-tag" style="background:rgba(74,154,186,0.13);color:var(--accent-blue)">♻️ Recyclage</div>
+          <h2 class="feature-h2">Les bons déchets au bon endroit</h2>
+          <p class="feature-p">Publiez vos plastiques, cartons ou anciens appareils électroniques — les entreprises de recyclage et associations écologiques viendront les récupérer gratuitement et vous récompenseront avec des points verts.</p>
+          <ul class="feature-list">
+            <li>Collecte directement depuis votre domicile</li>
+            <li>Suivi de votre impact environnemental</li>
+            <li>Partenariats avec des entreprises certifiées</li>
+            <li>Certificat écologique numérique partageable</li>
+          </ul>
+        </div>
+
+        <div class="feature-mockup">
+          <div class="mockup-header">
+            <div>
+              <div class="mockup-title">♻️ Demandes de recyclage</div>
+              <div class="mockup-sub">8 demandes dans votre zone</div>
+            </div>
+          </div>
+
+          <div class="lc">
+            <div class="lc-emoji">💻</div>
+            <div class="lc-info">
+              <div class="lc-name">Ordinateur + écran ancien</div>
+              <div class="lc-meta">Youssef · Sfax · collecte demandée</div>
+            </div>
+            <div class="lc-price price-blue">Électronique</div>
+          </div>
+
+          <div class="lc">
+            <div class="lc-emoji">📦</div>
+            <div class="lc-info">
+              <div class="lc-name">20 grands cartons</div>
+              <div class="lc-meta">Fatma · Tunis 2 · prêt à récupérer</div>
+            </div>
+            <div class="lc-price price-blue">Papier</div>
+          </div>
+
+          <div class="lc">
+            <div class="lc-emoji">🔋</div>
+            <div class="lc-info">
+              <div class="lc-name">Batteries usagées mixtes</div>
+              <div class="lc-meta">Karem · Nabeul · danger environnemental ⚠️</div>
+            </div>
+            <div class="lc-price price-orange">Priorité</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab-comm">
+      <div class="feature-layout">
+        <div>
+          <div class="feature-tag" style="background:rgba(46,204,113,0.1);color:var(--green-mid)">🤝 Communauté</div>
+          <h2 class="feature-h2">Ensemble, nous créons le changement</h2>
+          <p class="feature-p">Participez à des campagnes de nettoyage, rejoignez des initiatives bénévoles et relevez des défis écologiques amusants avec vos amis et voisins.</p>
+          <ul class="feature-list">
+            <li>Campagnes de nettoyage organisées dans toutes les villes</li>
+            <li>Défis mensuels Eco Challenge avec récompenses</li>
+            <li>Carte interactive des bénévoles en temps réel</li>
+            <li>Badges et récompenses pour les membres actifs</li>
+          </ul>
+        </div>
+
+        <div class="feature-mockup">
+          <div class="mockup-header">
+            <div>
+              <div class="mockup-title">🏆 Champions de la semaine</div>
+              <div class="mockup-sub">Défi "Une semaine sans plastique"</div>
+            </div>
+          </div>
+
+          <div class="lc">
+            <div class="lc-emoji">🥇</div>
+            <div class="lc-info">
+              <div class="lc-name">Amel Ben Salem</div>
+              <div class="lc-meta">Tunis · 12 points · 5 échanges</div>
+            </div>
+            <div class="lc-price" style="color:var(--earth)">1ère place</div>
+          </div>
+
+          <div class="lc">
+            <div class="lc-emoji">🥈</div>
+            <div class="lc-info">
+              <div class="lc-name">Youssef Trabelsi</div>
+              <div class="lc-meta">Sfax · 9 points · 3 échanges</div>
+            </div>
+            <div class="lc-price" style="color:rgba(255,255,255,.5)">2ème place</div>
+          </div>
+
+          <div class="lc">
+            <div class="lc-emoji">🥉</div>
+            <div class="lc-info">
+              <div class="lc-name">Meryem Jelassi</div>
+              <div class="lc-meta">Sousse · 7 points · 4 repas sauvés</div>
+            </div>
+            <div class="lc-price price-orange">3ème place</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SMART FEATURES -->
+<section class="smart-section" id="smart">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-chip">🧠 Technologie intelligente</div>
+      <h2 class="section-title">Fonctionnalités intelligentes</h2>
+      <p class="section-desc">Une technologie moderne au service de l’environnement et de la société — conçue pour rendre la durabilité simple et agréable</p>
+    </div>
+
+    <div class="smart-grid">
+      
+      <div class="smart-card reveal d1">
+        <div class="smart-icon">📍</div>
+        <div class="smart-title">Géolocalisation intelligente</div>
+        <div class="smart-desc">Détecte votre position et affiche les offres et demandes les plus proches — pas d’attente, les opportunités sont à quelques kilomètres.</div>
+      </div>
+
+      <div class="smart-card reveal d2">
+        <div class="smart-icon">🤖</div>
+        <div class="smart-title">Matching automatique</div>
+        <div class="smart-desc">Un algorithme analyse vos publications et propose les meilleurs bénéficiaires — sans recherche manuelle, instantané et précis.</div>
+      </div>
+
+      <div class="smart-card reveal d3">
+        <div class="smart-icon">🔔</div>
+        <div class="smart-title">Notifications instantanées</div>
+        <div class="smart-desc">Alertes en temps réel lorsqu’il y a une correspondance avec vos intérêts — ne manquez aucune offre ou demande près de vous.</div>
+      </div>
+
+      <div class="smart-card reveal d1">
+        <div class="smart-icon">📊</div>
+        <div class="smart-title">Suivi de votre impact écologique</div>
+        <div class="smart-desc">Visualisez en chiffres réels combien de kilos vous avez sauvés et combien de CO₂ vous avez évité — les points verts augmentent avec chaque action positive.</div>
+      </div>
+
+      <div class="smart-card reveal d2">
+        <div class="smart-icon">🏛️</div>
+        <div class="smart-title">Portail des associations</div>
+        <div class="smart-desc">Les associations et les personnes dans le besoin accèdent aux ressources de manière organisée et transparente — gouvernance numérique sécurisée.</div>
+      </div>
+
+      <div class="smart-card reveal d3">
+        <div class="smart-icon">✅</div>
+        <div class="smart-title">Système de confiance et de notation</div>
+        <div class="smart-desc">Avis réels, badges de fiabilité et historique transparent — interagissez en toute sécurité avec les membres de la communauté.</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SDG -->
+<section class="sdg-section" id="sdg">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-chip">🎯 Objectifs de Développement Durable</div>
+      <h2 class="section-title">Nous soutenons 4 objectifs des Nations Unies</h2>
+      <p class="section-desc">EcoShare contribue directement à la réalisation des Objectifs de Développement Durable des Nations Unies à l’horizon 2030</p>
+    </div>
+    <div class="sdg-grid">
+      
+      <div class="sdg-card s2 reveal d1">
+        <div class="sdg-icon">🍽️</div>
+        <div class="sdg-num">ODD 2</div>
+        <div class="sdg-title">Faim zéro</div>
+        <div class="sdg-desc">Rediriger la nourriture excédentaire vers ceux qui en ont réellement besoin</div>
+      </div>
+
+      <div class="sdg-card s11 reveal d2">
+        <div class="sdg-icon">🏙️</div>
+        <div class="sdg-num">ODD 11</div>
+        <div class="sdg-title">Villes durables</div>
+        <div class="sdg-desc">Construire des communautés locales intégrées et connectées numériquement</div>
+      </div>
+
+      <div class="sdg-card s12 reveal d3">
+        <div class="sdg-icon">🔄</div>
+        <div class="sdg-num">ODD 12</div>
+        <div class="sdg-title">Consommation responsable</div>
+        <div class="sdg-desc">Réduire le gaspillage et la surproduction grâce à l’échange et au recyclage</div>
+      </div>
+
+      <div class="sdg-card s13 reveal d4">
+        <div class="sdg-icon">🌍</div>
+        <div class="sdg-num">ODD 13</div>
+        <div class="sdg-title">Action climatique</div>
+        <div class="sdg-desc">Réduire l’empreinte carbone à chaque échange ou action de récupération</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="map-section" id="map">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-chip">📍 Carte en direct</div>
+      <h2 class="section-title">Tout ce qui se passe autour de vous</h2>
+      <p class="section-desc">Découvrez les offres, demandes et initiatives près de chez vous en temps réel</p>
+    </div>
+    <div class="map-layout">
+      
+      <div class="map-feats reveal">
+        <div class="map-feat">
+          <div class="map-feat-icon">🍱</div>
+          <div>
+            <div class="map-feat-title">De la nourriture proche vous attend</div>
+            <div class="map-feat-desc">Les offres de nourriture excédentaire sur la carte avec le temps restant</div>
+          </div>
+        </div>
+
+        <div class="map-feat">
+          <div class="map-feat-icon">🔄</div>
+          <div>
+            <div class="map-feat-title">Échanges dans votre quartier</div>
+            <div class="map-feat-desc">Vos voisins publient ce qu’ils ont — contactez-les directement</div>
+          </div>
+        </div>
+
+        <div class="map-feat">
+          <div class="map-feat-icon">🏛️</div>
+          <div>
+            <div class="map-feat-title">Associations proches</div>
+            <div class="map-feat-desc">Envoyez votre don à l’association la plus proche facilement</div>
+          </div>
+        </div>
+
+        <div class="map-feat">
+          <div class="map-feat-icon">🧹</div>
+          <div>
+            <div class="map-feat-title">Actions de nettoyage</div>
+            <div class="map-feat-desc">Des initiatives bénévoles proches attendent votre participation cette semaine</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fake-map reveal d2">
+        <div class="map-grid"></div>
+
+        <div class="pin" style="top:28%;left:42%">
+          <div class="pin-label g">🍕 Gratuit</div>
+          <div class="pin-dot g"></div>
+        </div>
+
+        <div class="pin" style="top:52%;left:62%">
+          <div class="pin-label o">📚 Échange</div>
+          <div class="pin-dot o"></div>
+        </div>
+
+        <div class="pin" style="top:67%;left:28%">
+          <div class="pin-label g">🥗 1.5 DT</div>
+          <div class="pin-dot g"></div>
+        </div>
+
+        <div class="pin" style="top:37%;left:72%">
+          <div class="pin-label b">♻️ Recyclage</div>
+          <div class="pin-dot b"></div>
+        </div>
+
+        <div class="pin" style="top:77%;left:58%">
+          <div class="pin-label g">🍰 Gratuit</div>
+          <div class="pin-dot g"></div>
+        </div>
+
+        <div class="pin" style="top:22%;left:18%">
+          <div class="pin-label b">🏛️ Association</div>
+          <div class="pin-dot b"></div>
+        </div>
+
+        <div class="map-legend">
+          <div class="legend-row">
+            <div class="legend-dot" style="background:var(--green-bright)"></div>
+            Nourriture
+          </div>
+          <div class="legend-row">
+            <div class="legend-dot" style="background:var(--accent-orange)"></div>
+            Échange
+          </div>
+          <div class="legend-row">
+            <div class="legend-dot" style="background:var(--accent-blue)"></div>
+            Recyclage / Association
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY CHALLENGES -->
+<section class="community-section" id="community">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-chip">🏆 Eco Challenges</div>
+      <h2 class="section-title">Défis écologiques amusants</h2>
+      <p class="section-desc">Compétez et collaborez avec votre communauté pour créer un changement réel et mesurable</p>
+    </div>
+    <div class="challenges-grid">
+      
+      <div class="ch-card c1 reveal d1">
+        <div class="ch-icon">🚫🛍️</div>
+        <div class="ch-title">Une semaine sans plastique</div>
+        <div class="ch-desc">Un défi de 7 jours pour éviter tout produit en plastique et partager votre expérience chaque jour avec la communauté</div>
+        <div class="ch-meta">
+          <div class="ch-participants">👥 234 participants</div>
+          <button class="ch-join" onclick="joinChallenge(this)">Rejoindre</button>
+        </div>
+      </div>
+
+      <div class="ch-card c2 reveal d2">
+        <div class="ch-icon">🍽️</div>
+        <div class="ch-title">Sauvez 10 repas</div>
+        <div class="ch-desc">Votre objectif est de sauver 10 repas du gaspillage ce mois-ci — seul ou avec une équipe d’amis</div>
+        <div class="ch-meta">
+          <div class="ch-participants">👥 158 participants</div>
+          <button class="ch-join" onclick="joinChallenge(this)">Rejoindre</button>
+        </div>
+      </div>
+
+      <div class="ch-card c3 reveal d3">
+        <div class="ch-icon">🧹</div>
+        <div class="ch-title">Nettoyez votre quartier</div>
+        <div class="ch-desc">Organisez ou participez à une action de nettoyage dans votre quartier et enregistrez vos heures de bénévolat avec des photos</div>
+        <div class="ch-meta">
+          <div class="ch-participants">👥 89 participants</div>
+          <button class="ch-join" onclick="joinChallenge(this)">Rejoindre</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- POST -->
+<section class="post-section" id="post">
+  <div class="container">
+    <div class="section-header reveal">
+      <div class="section-chip">✍️ Commencez maintenant</div>
+      <h2 class="section-title">Publiez votre première annonce</h2>
+      <p class="section-desc">Gratuit, rapide et impactant — commencez en quelques secondes et faites partie du changement</p>
+    </div>
+    <div class="post-grid">
+      <div class="reveal">
+        <div class="post-form-card">
+          <div class="form-title">📋 Nouvelle annonce</div>
+          <div class="type-selector">
+            <div class="type-opt selected" onclick="selectType(this)"><span class="type-opt-icon">🍱</span><div class="type-opt-label">Nourriture</div></div>
+            <div class="type-opt" onclick="selectType(this)"><span class="type-opt-icon">🔄</span><div class="type-opt-label">Échange</div></div>
+            <div class="type-opt" onclick="selectType(this)"><span class="type-opt-icon">♻️</span><div class="type-opt-label">Recyclage</div></div>
+            <div class="type-opt" onclick="selectType(this)"><span class="type-opt-icon">🤝</span><div class="type-opt-label">Bénévolat</div></div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Titre de l’annonce</label>
+            <input class="form-input" id="fi-title" type="text" placeholder="Exemple : 3 parts de pizza prêtes à être récupérées...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Détails</label>
+            <textarea class="form-textarea" placeholder="Ajoutez une description, l’état ou toute information utile..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Localisation</label>
+            <input class="form-input" type="text" placeholder="Votre quartier ou votre ville...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Prix</label>
+            <select class="form-select">
+              <option>Entièrement gratuit</option>
+              <option>Prix symbolique (moins de 2 DT)</option>
+              <option>Échange uniquement</option>
+            </select>
+          </div>
+          <button class="form-submit" onclick="submitPost()">🚀 Publier l’annonce</button>
+        </div>
+      </div>
+      <div class="reveal d2">
+        <div class="recent-title">📣 Dernières annonces</div>
+
+        <div class="ri">
+          <div class="ri-emoji">🍱</div>
+          <div class="ri-info">
+            <div class="ri-name">Couscous + sauce — ce soir seulement</div>
+            <div class="ri-meta">il y a 5 minutes · Tunis</div>
+          </div>
+          <div class="ri-badge bf">Nourriture</div>
+        </div>
+
+        <div class="ri">
+          <div class="ri-emoji">🚲</div>
+          <div class="ri-info">
+            <div class="ri-name">Vélo pour enfants</div>
+            <div class="ri-meta">il y a 12 minutes · Sousse</div>
+          </div>
+          <div class="ri-badge be">Échange</div>
+        </div>
+
+        <div class="ri">
+          <div class="ri-emoji">📦</div>
+          <div class="ri-info">
+            <div class="ri-name">Grands cartons d’emballage</div>
+            <div class="ri-meta">il y a 23 minutes · Sfax</div>
+          </div>
+          <div class="ri-badge br">Recyclage</div>
+        </div>
+
+        <div class="ri">
+          <div class="ri-emoji">🥐</div>
+          <div class="ri-info">
+            <div class="ri-name">Viennoiseries du matin — gratuit</div>
+            <div class="ri-meta">il y a 31 minutes · Ariana</div>
+          </div>
+          <div class="ri-badge bf">Nourriture</div>
+        </div>
+
+        <div class="ri">
+          <div class="ri-emoji">📱</div>
+          <div class="ri-info">
+            <div class="ri-name">Ancien téléphone à donner</div>
+            <div class="ri-meta">il y a 45 minutes · Monastir</div>
+          </div>
+          <div class="ri-badge be">Échange</div>
+        </div>
+
+        <div class="ri">
+          <div class="ri-emoji">🔋</div>
+          <div class="ri-info">
+            <div class="ri-name">Batteries usagées pour recyclage</div>
+            <div class="ri-meta">il y a 1 heure · Nabeul</div>
+          </div>
+          <div class="ri-badge br">Recyclage</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:0.9rem">
+        <div class="logo-icon">🌱</div>
+        <div class="logo-text">Eco<span>Share</span></div>
+      </div>
+      <p class="footer-desc">Plateforme tunisienne d’économie collaborative et de durabilité environnementale — nous connectons les gens pour construire une société plus équitable et avec moins de gaspillage.</p>
+    </div>
+    <div>
+      <div class="footer-col-title">Plateforme</div>
+      <ul class="footer-links">
+        <li><a href="#">Food Rescue</a></li>
+        <li><a href="#">Échange</a></li>
+        <li><a href="#">Recyclage</a></li>
+        <li><a href="#">Communauté</a></li>
+        <li><a href="#">Carte en direct</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Partenaires</div>
+      <ul class="footer-links">
+        <li><a href="#">Restaurants et commerces</a></li>
+        <li><a href="#">Associations</a></li>
+        <li><a href="#">Entreprises de recyclage</a></li>
+        <li><a href="#">Collectivités locales</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Contact</div>
+      <ul class="footer-links">
+        <li><a href="#">À propos de la plateforme</a></li>
+        <li><a href="#">Politique de confidentialité</a></li>
+        <li><a href="#">Support utilisateurs</a></li>
+        <li><a href="#">info@ecoshare.tn</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 EcoShare — Partagez et économisez. Fait avec 💚 en Tunisie</div>
+    <div class="footer-odds">
+      <div class="odd-badge">ODD 2</div>
+      <div class="odd-badge">ODD 11</div>
+      <div class="odd-badge">ODD 12</div>
+      <div class="odd-badge">ODD 13</div>
+    </div>
+  </div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  function switchTab(name, btn) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  function selectType(el) {
+    document.querySelectorAll('.type-opt').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.innerHTML = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3500);
+  }
+
+  function submitPost() {
+  const inp = document.getElementById('fi-title');
+  if (!inp.value.trim()) { 
+    showToast('⚠️ Veuillez ajouter un titre pour l’annonce'); 
+    return; 
+  }
+  showToast('✅ Votre annonce a été publiée avec succès ! Vous recevrez bientôt des demandes 🎉');
+  document.querySelectorAll('.form-input, .form-textarea').forEach(el => el.value = '');
+}
+
+  function joinChallenge(btn) {
+  btn.textContent = '✓ Inscrit';
+  btn.classList.add('joined');
+  showToast('🏆 Vous avez rejoint le défi ! Bonne chance 💪');
+}
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>
